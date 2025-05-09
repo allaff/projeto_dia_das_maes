@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow: clip;
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #2C282C;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-transform: uppercase;
+    padding: 2rem;
+    text-align: center;
+}
+
+#img_nerd {
+    max-width: 90%;
+    width: 400px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    max-width: 90%;
+}
+
+/* Confetes */
+#confetti-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+}
+
+.confetti {
+    position: absolute;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+    opacity: 0.9;
+    animation: explode 2s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y)) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #img_nerd {
+        width: 280px;
+    }
+}
