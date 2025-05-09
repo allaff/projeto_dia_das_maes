@@ -1,10 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('confetti-container');
-    const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#00f', '#f00'];
+    const resgatado = localStorage.getItem('promo_resgatada');
 
-    // Ajustar quantidade com base na largura da tela
-    const screenWidth = window.innerWidth;
-    const confettiCount = screenWidth < 600 ? 40 : 100;
+    if (resgatado) {
+        document.body.innerHTML = `
+          <img src="img_nerd.png" alt="logotipo da empresa" id="img_nerd">
+          <h1>Você já resgatou sua promoção 🎁</h1>
+        `;
+        return;
+    }
+      
+
+    // Mostra promoção normalmente
+    const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#00f', '#f00'];
+    const confettiCount = window.innerWidth < 600 ? 40 : 100;
 
     for (let i = 0; i < confettiCount; i++) {
         const confetti = document.createElement('div');
@@ -24,9 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(confetti);
     }
 
-    // Remover os confetes após 3 segundos
+    // Marca como resgatado após 3s
     setTimeout(() => {
         container.innerHTML = '';
+        localStorage.setItem('promo_resgatada', 'true');
     }, 3000);
 });
   
