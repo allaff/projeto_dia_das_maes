@@ -98,3 +98,49 @@ h1 {
         width: 280px;
     }
 }
+
+/* styles.css */
+
+/* 1. Define as variáveis de cor para o modo padrão (Light) */
+:root {
+    --cor-fundo: #FFFFFF;
+    --cor-texto: #111827;
+    --cor-primaria: #3B82F6;
+    --cor-borda: #E5E7EB;
+    --cor-fundo-card: #F9FAFB;
+    
+}
+
+/* 2. Sobrescreve as variáveis para o modo Dark */
+html[data-theme='dark'] {
+    --cor-fundo: #2C282C;
+    --cor-texto: #F9FAFB;
+    --cor-primaria: #60A5FA;
+    --cor-borda: #374151;
+    --cor-fundo-card: #1F2937;
+    --cor-footer: #1f1b1f;
+}
+
+/* 3. Aplica as variáveis nos seus elementos */
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Transição suave */
+}
+
+.meu-card {
+    background-color: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.meu-botao {
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer; }

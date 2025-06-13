@@ -1,0 +1,3 @@
+#FFD900 - Amarelo
+#000000 - Preto
+#CC001A - Vermelho
