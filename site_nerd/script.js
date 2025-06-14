@@ -14,19 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         return;
     }
-    
+
     function sortearFrase(frasesArray) {
         const index = Math.floor(Math.random() * frasesArray.length);
         return frasesArray[index];
     }
-      
+
     const frases = [
         "uma higienização gratuita!",
-        ];
+    ];
 
     const fraseSorteada = sortearFrase(frases);
     document.getElementById('frase-promocional').innerHTML = `<b>Você ganhou ${fraseSorteada}</b>`;
-      
+
     // Mostra promoção normalmente
     const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#00f', '#f00'];
     const confettiCount = window.innerWidth < 600 ? 40 : 100;
@@ -55,4 +55,3 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('promo_resgatada', 'true');
     }, 3000);
 });
-
