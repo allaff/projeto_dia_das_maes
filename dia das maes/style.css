@@ -38,6 +38,56 @@ h1 {
     max-width: 90%;
 }
 
+button {
+    background-color: #7FCA44;
+    color: #2C282C;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+        /* Ativa o modo flex */
+        align-items: center;
+        /* Alinha o ícone e o texto verticalmente */
+        justify-content: center;
+        /* Centraliza o conteúdo horizontalmente */
+        gap: 8px;
+        /* Cria um espaço de 8px entre o ícone e o texto */
+}
+
+button i {
+    margin-right: 1px;
+    /* Cria uma margem de 8px à direita do ícone */
+}
+
+button:hover {
+    background-color: #6cb633;
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
+button:active {
+    background-color: #7FC844;
+    transform: scale(0.95);
+}
+
+#botao-contato{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+
+a {
+    color: #4a90e2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Footer */
+
 #main-footer {
     width: 100%;
     padding: 1rem;
@@ -53,6 +103,7 @@ h1 {
 @media (max-height: 500px) {
     #main-footer {
         position: static;
+        font-size: 0.8rem;
         /* Para evitar sobreposição em telas muito baixas */
     }
 }
@@ -99,48 +150,102 @@ h1 {
     }
 }
 
-/* styles.css */
-
-/* 1. Define as variáveis de cor para o modo padrão (Light) */
-:root {
-    --cor-fundo: #FFFFFF;
-    --cor-texto: #111827;
-    --cor-primaria: #3B82F6;
-    --cor-borda: #E5E7EB;
-    --cor-fundo-card: #F9FAFB;
-    
+.manutencao-container {
+    display: flex;
+    align-items: center;
+    /* Alinha verticalmente o texto e a imagem */
+    justify-content: center;
+    /* Centraliza o conjunto horizontalmente */
+    gap: 50px;
+    /* Cria um espaço entre o texto e a imagem */
+    padding: 20px;
+    /* Um respiro nas bordas */
+    max-width: 1000px;
+    /* Evita que fique largo demais em telas gigantes */
 }
 
-/* 2. Sobrescreve as variáveis para o modo Dark */
-html[data-theme='dark'] {
-    --cor-fundo: #2C282C;
-    --cor-texto: #F9FAFB;
-    --cor-primaria: #60A5FA;
-    --cor-borda: #374151;
-    --cor-fundo-card: #1F2937;
-    --cor-footer: #1f1b1f;
+/* No desktop, queremos o texto na esquerda e a imagem na direita.
+   A propriedade 'order' do flexbox nos permite reordenar os itens visualmente!
+*/
+.manutencao-container .texto-container {
+    order: 1;
+    /* Manda o texto para a primeira posição (esquerda) */
+    text-align:  left;
+    /* Alinha o texto à esquerda */
 }
 
-/* 3. Aplica as variáveis nos seus elementos */
-body {
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
-    font-family: sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    /* Transição suave */
+.manutencao-container img {
+    order: 2;
+    /* Manda a imagem para a segunda posição (direita) */
+    max-width: 700px;
+    /* Define um tamanho máximo para a imagem */
+    height: auto;
+    /* Mantém a proporção da imagem */
 }
 
-.meu-card {
-    background-color: var(--cor-fundo-card);
-    border: 1px solid var(--cor-borda);
-    padding: 1rem;
-    border-radius: 8px;
+
+/* PASSO 3: Layout para MOBILE (tela pequena) - Empilhado
+  Aqui usamos uma Media Query. O CSS aqui dentro só se aplica
+  se a tela tiver 768px de largura ou menos.
+*/
+@media (max-width: 768px) {
+    .manutencao-container {
+        /* Muda a direção do flex para coluna (um item embaixo do outro) */
+        flex-direction: column;
+        text-align: center;
+        /* Centraliza todo o texto no mobile */
+    }
+
+    /* No mobile, queremos a ordem natural do HTML (imagem em cima, texto embaixo).
+       Então, resetamos a propriedade 'order'.
+    */
+    .manutencao-container .texto-container,
+    .manutencao-container img {
+        order: 0;
+        /* Reseta a ordem para o padrão do HTML */
+    }
+
+    .manutencao-container .texto-container {
+        text-align: center;
+        /* Garante que o texto fique centralizado */
+    }
+
+    .manutencao-container img {
+        max-width: 80%;
+        /* Faz a imagem ocupar 80% da largura da tela */
+    }
 }
 
-.meu-botao {
-    background-color: var(--cor-primaria);
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer; }
+/* 1. Definindo a animação 'pulse' com @keyframes */
+@keyframes pulse {
+
+    /* Estado inicial da animação */
+    0% {
+        transform: scale(1);
+        /* Tamanho normal */
+        opacity: 1;
+        /* Opacidade normal */
+    }
+
+    /* Meio da animação */
+    50% {
+        transform: scale(1.4);
+        /* Aumenta o tamanho em 40% */
+        opacity: 0.7;
+        /* Levemente transparente */
+    }
+
+    /* Estado final da animação (volta ao normal) */
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 2. Criando uma classe que aplica a animação */
+.pulse-animation {
+    /* 'pulse' é o nome que demos no @keyframes
+      '0.5s' é a duração da animação (meio segundo)
+      'ease-in-out' é a curva de velocidade da animação 
+    */
+    animation: pulse 0.5s ease-in-out; }
